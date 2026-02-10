@@ -1,34 +1,73 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* App-specific styles */
+
+/* Word pronunciation styling */
+.pronunciation {
+    @apply font-mono text-sm text-muted-foreground tracking-wide;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Quiz option cards */
+.quiz-option {
+    @apply p-4 md:p-6 rounded-sm border border-border bg-card cursor-pointer 
+           transition-all duration-200 hover:border-primary hover:bg-secondary;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.quiz-option.selected {
+    @apply border-accent bg-accent/10;
 }
 
-.App-link {
-    color: #61dafb;
+.quiz-option.correct {
+    @apply border-green-500 bg-green-500/10;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
+.quiz-option.incorrect {
+    @apply border-destructive bg-destructive/10;
+}
+
+/* Progress bar custom */
+.progress-bar-fill {
+    @apply bg-accent transition-all duration-500 ease-out;
+}
+
+/* Tab styling */
+.tab-active {
+    @apply border-b-2 border-accent text-foreground;
+}
+
+.tab-inactive {
+    @apply border-b-2 border-transparent text-muted-foreground hover:text-foreground;
+}
+
+/* Word card styling */
+.word-card {
+    @apply p-6 md:p-8 rounded-sm border border-border bg-card;
+}
+
+/* Learned badge */
+.learned-badge {
+    @apply inline-flex items-center gap-1 px-2 py-1 text-xs font-medium uppercase tracking-wider 
+           bg-green-500/10 text-green-600 dark:text-green-400 rounded-sm;
+}
+
+/* Streak indicator */
+.streak-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 text-sm font-semibold 
+           bg-accent text-accent-foreground rounded-sm;
+}
+
+/* Empty state */
+.empty-state {
+    @apply flex flex-col items-center justify-center py-16 text-center;
+}
+
+/* Navigation */
+.nav-item {
+    @apply px-4 py-2 text-sm font-medium uppercase tracking-wider transition-colors duration-200;
+}
+
+/* Mobile bottom nav */
+@media (max-width: 768px) {
+    .bottom-nav {
+        @apply fixed bottom-0 left-0 right-0 bg-background border-t border-border 
+               flex justify-around items-center py-2 z-50;
     }
 }
