@@ -3,7 +3,7 @@ import "@/App.css";
 import axios from "axios";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Book, Brain, Trophy, Archive, Sun, Moon, Flame, Check, X, ChevronRight, RotateCcw } from "lucide-react";
+import { Book, Brain, Trophy, Archive, Sun, Moon, Flame, Check, X, ChevronRight, RotateCcw, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -36,8 +36,36 @@ const useTheme = () => {
   return [isDark, setIsDark];
 };
 
+// Text-to-Speech hook
+const useSpeech = () => {
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const speak = (text) => {
+    if ('speechSynthesis' in window) {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.8; // Slower for clarity
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      
+      window.speechSynthesis.speak(utterance);
+    } else {
+      toast.error("Speech synthesis not supported in this browser");
+    }
+  };
+
+  return { speak, isSpeaking };
+};
+
 // Word of the Day Component
 const WordOfTheDay = ({ word, onMarkLearned, loading }) => {
+  const { speak, isSpeaking } = useSpeech();
   if (loading) {
     return (
       <Card className="card-hover animate-fade-in-up">
@@ -72,9 +100,19 @@ const WordOfTheDay = ({ word, onMarkLearned, loading }) => {
             <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Word of the Day
             </p>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight" data-testid="word-title">
-              {word.word}
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight" data-testid="word-title">
+                {word.word}
+              </h1>
+              <button
+                onClick={() => speak(word.word)}
+                className={`p-2 rounded-sm border border-border hover:bg-secondary hover:border-accent transition-all ${isSpeaking ? 'bg-accent/10 border-accent' : ''}`}
+                title="Hear pronunciation"
+                data-testid="speak-word-btn"
+              >
+                <Volume2 className={`w-6 h-6 ${isSpeaking ? 'text-accent animate-pulse-soft' : 'text-muted-foreground'}`} />
+              </button>
+            </div>
           </div>
           {word.is_learned && (
             <Badge variant="outline" className="learned-badge" data-testid="learned-badge">
