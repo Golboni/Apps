@@ -43,6 +43,7 @@ class Word(BaseModel):
     part_of_speech: str
     definition: str
     example: str
+    synonyms: List[str] = []
     date_added: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
@@ -53,6 +54,7 @@ class WordResponse(BaseModel):
     part_of_speech: str
     definition: str
     example: str
+    synonyms: List[str] = []
     date_added: str
     is_learned: bool = False
 
@@ -100,210 +102,240 @@ VOCABULARY_WORDS = [
         "pronunciation": "yoo-di-MON-ik",
         "part_of_speech": "adjective",
         "definition": "pertaining or conducive to happiness and well-being",
-        "example": "The artist was guided by eudemonic ideals, believing that creative fulfillment mattered more than wealth."
+        "example": "The artist was guided by eudemonic ideals, believing that creative fulfillment mattered more than wealth.",
+        "synonyms": ["blissful", "felicitous"]
     },
     {
         "word": "vilipend",
         "pronunciation": "VIL-uh-pend",
         "part_of_speech": "verb",
         "definition": "to regard or treat as of little value or account",
-        "example": "Don't vilipend your colleague's innovative idea just because you prefer traditional methods."
+        "example": "Don't vilipend your colleague's innovative idea just because you prefer traditional methods.",
+        "synonyms": ["disparage", "belittle"]
     },
     {
         "word": "equanimous",
         "pronunciation": "ih-KWAN-uh-muhs",
         "part_of_speech": "adjective",
         "definition": "having or showing mental and emotional composure",
-        "example": "The equanimous leader calmly addressed the crisis, never losing her composure."
+        "example": "The equanimous leader calmly addressed the crisis, never losing her composure.",
+        "synonyms": ["composed", "serene"]
     },
     {
         "word": "xylography",
         "pronunciation": "zahy-LOG-ruh-fee",
         "part_of_speech": "noun",
         "definition": "the art of engraving on wood",
-        "example": "The artist displayed his skill in xylography by creating detailed prints from carved wood."
+        "example": "The artist displayed his skill in xylography by creating detailed prints from carved wood.",
+        "synonyms": ["woodcutting", "wood engraving"]
     },
     {
         "word": "perspicacious",
         "pronunciation": "pur-spi-KAY-shuhs",
         "part_of_speech": "adjective",
         "definition": "having a ready insight into and understanding of things; shrewd",
-        "example": "Her perspicacious analysis of the market trends saved the company millions."
+        "example": "Her perspicacious analysis of the market trends saved the company millions.",
+        "synonyms": ["astute", "discerning"]
     },
     {
         "word": "ephemeral",
         "pronunciation": "ih-FEM-er-uhl",
         "part_of_speech": "adjective",
         "definition": "lasting for a very short time",
-        "example": "The ephemeral beauty of cherry blossoms reminds us to appreciate fleeting moments."
+        "example": "The ephemeral beauty of cherry blossoms reminds us to appreciate fleeting moments.",
+        "synonyms": ["fleeting", "transient"]
     },
     {
         "word": "obfuscate",
         "pronunciation": "OB-fuh-skayt",
         "part_of_speech": "verb",
         "definition": "to render obscure, unclear, or unintelligible",
-        "example": "Politicians often obfuscate their true intentions with complex language."
+        "example": "Politicians often obfuscate their true intentions with complex language.",
+        "synonyms": ["obscure", "confuse"]
     },
     {
         "word": "sanguine",
         "pronunciation": "SANG-gwin",
         "part_of_speech": "adjective",
         "definition": "optimistic or positive, especially in a difficult situation",
-        "example": "Despite the setbacks, she remained sanguine about the project's success."
+        "example": "Despite the setbacks, she remained sanguine about the project's success.",
+        "synonyms": ["optimistic", "hopeful"]
     },
     {
         "word": "laconic",
         "pronunciation": "luh-KON-ik",
         "part_of_speech": "adjective",
         "definition": "using very few words; terse",
-        "example": "His laconic response of 'no' ended the lengthy debate."
+        "example": "His laconic response of 'no' ended the lengthy debate.",
+        "synonyms": ["terse", "succinct"]
     },
     {
         "word": "ubiquitous",
         "pronunciation": "yoo-BIK-wi-tuhs",
         "part_of_speech": "adjective",
         "definition": "present, appearing, or found everywhere",
-        "example": "Smartphones have become ubiquitous in modern society."
+        "example": "Smartphones have become ubiquitous in modern society.",
+        "synonyms": ["omnipresent", "pervasive"]
     },
     {
         "word": "ineffable",
         "pronunciation": "in-EF-uh-buhl",
         "part_of_speech": "adjective",
         "definition": "too great or extreme to be expressed or described in words",
-        "example": "The view from the mountaintop filled her with ineffable joy."
+        "example": "The view from the mountaintop filled her with ineffable joy.",
+        "synonyms": ["indescribable", "unspeakable"]
     },
     {
         "word": "pernicious",
         "pronunciation": "per-NISH-uhs",
         "part_of_speech": "adjective",
         "definition": "having a harmful effect, especially in a gradual or subtle way",
-        "example": "The pernicious influence of misinformation undermines public trust."
+        "example": "The pernicious influence of misinformation undermines public trust.",
+        "synonyms": ["harmful", "detrimental"]
     },
     {
         "word": "mellifluous",
         "pronunciation": "muh-LIF-loo-uhs",
         "part_of_speech": "adjective",
         "definition": "sweet or musical; pleasant to hear",
-        "example": "The singer's mellifluous voice captivated the entire audience."
+        "example": "The singer's mellifluous voice captivated the entire audience.",
+        "synonyms": ["melodious", "dulcet"]
     },
     {
         "word": "serendipity",
         "pronunciation": "ser-uhn-DIP-i-tee",
         "part_of_speech": "noun",
         "definition": "the occurrence of events by chance in a happy way",
-        "example": "Finding that rare book at the garage sale was pure serendipity."
+        "example": "Finding that rare book at the garage sale was pure serendipity.",
+        "synonyms": ["fortune", "happenstance"]
     },
     {
         "word": "quintessential",
         "pronunciation": "kwin-tuh-SEN-shuhl",
         "part_of_speech": "adjective",
         "definition": "representing the most perfect or typical example of something",
-        "example": "The small café was the quintessential Parisian experience."
+        "example": "The small café was the quintessential Parisian experience.",
+        "synonyms": ["archetypal", "exemplary"]
     },
     {
         "word": "loquacious",
         "pronunciation": "loh-KWAY-shuhs",
         "part_of_speech": "adjective",
         "definition": "tending to talk a great deal; talkative",
-        "example": "The loquacious host kept guests entertained with endless stories."
+        "example": "The loquacious host kept guests entertained with endless stories.",
+        "synonyms": ["garrulous", "voluble"]
     },
     {
         "word": "insouciant",
         "pronunciation": "in-SOO-see-uhnt",
         "part_of_speech": "adjective",
         "definition": "showing a casual lack of concern; indifferent",
-        "example": "Her insouciant attitude toward the deadline worried her colleagues."
+        "example": "Her insouciant attitude toward the deadline worried her colleagues.",
+        "synonyms": ["nonchalant", "carefree"]
     },
     {
         "word": "recalcitrant",
         "pronunciation": "ri-KAL-si-truhnt",
         "part_of_speech": "adjective",
         "definition": "having an obstinately uncooperative attitude",
-        "example": "The recalcitrant employee refused to follow the new protocols."
+        "example": "The recalcitrant employee refused to follow the new protocols.",
+        "synonyms": ["defiant", "stubborn"]
     },
     {
         "word": "munificent",
         "pronunciation": "myoo-NIF-uh-suhnt",
         "part_of_speech": "adjective",
         "definition": "larger or more generous than usual or necessary",
-        "example": "The munificent donation transformed the struggling charity."
+        "example": "The munificent donation transformed the struggling charity.",
+        "synonyms": ["generous", "lavish"]
     },
     {
         "word": "perfunctory",
         "pronunciation": "per-FUNGK-tuh-ree",
         "part_of_speech": "adjective",
         "definition": "carried out with minimum effort or reflection",
-        "example": "His perfunctory apology failed to convince anyone of his sincerity."
+        "example": "His perfunctory apology failed to convince anyone of his sincerity.",
+        "synonyms": ["cursory", "superficial"]
     },
     {
         "word": "gregarious",
         "pronunciation": "gri-GAIR-ee-uhs",
         "part_of_speech": "adjective",
         "definition": "fond of company; sociable",
-        "example": "The gregarious host made sure everyone at the party felt welcome."
+        "example": "The gregarious host made sure everyone at the party felt welcome.",
+        "synonyms": ["sociable", "outgoing"]
     },
     {
         "word": "soporific",
         "pronunciation": "sop-uh-RIF-ik",
         "part_of_speech": "adjective",
         "definition": "tending to induce drowsiness or sleep",
-        "example": "The professor's soporific lecture had half the class nodding off."
+        "example": "The professor's soporific lecture had half the class nodding off.",
+        "synonyms": ["sedative", "hypnotic"]
     },
     {
         "word": "capricious",
         "pronunciation": "kuh-PRISH-uhs",
         "part_of_speech": "adjective",
         "definition": "given to sudden and unaccountable changes of mood or behavior",
-        "example": "The capricious weather ruined our outdoor wedding plans."
+        "example": "The capricious weather ruined our outdoor wedding plans.",
+        "synonyms": ["fickle", "unpredictable"]
     },
     {
         "word": "prodigious",
         "pronunciation": "pruh-DIJ-uhs",
         "part_of_speech": "adjective",
         "definition": "remarkably great in extent, size, or degree",
-        "example": "The child prodigy showed prodigious talent in mathematics."
+        "example": "The child prodigy showed prodigious talent in mathematics.",
+        "synonyms": ["enormous", "extraordinary"]
     },
     {
         "word": "sagacious",
         "pronunciation": "suh-GAY-shuhs",
         "part_of_speech": "adjective",
         "definition": "having or showing keen mental discernment and good judgment",
-        "example": "The sagacious investor predicted the market crash months in advance."
+        "example": "The sagacious investor predicted the market crash months in advance.",
+        "synonyms": ["wise", "shrewd"]
     },
     {
         "word": "ebullient",
         "pronunciation": "ih-BULL-yuhnt",
         "part_of_speech": "adjective",
         "definition": "cheerful and full of energy",
-        "example": "Her ebullient personality brightened even the dullest meetings."
+        "example": "Her ebullient personality brightened even the dullest meetings.",
+        "synonyms": ["exuberant", "vivacious"]
     },
     {
         "word": "truculent",
         "pronunciation": "TRUK-yuh-luhnt",
         "part_of_speech": "adjective",
         "definition": "eager or quick to argue or fight; aggressively defiant",
-        "example": "The truculent customer demanded to speak with the manager."
+        "example": "The truculent customer demanded to speak with the manager.",
+        "synonyms": ["belligerent", "combative"]
     },
     {
         "word": "vicissitude",
         "pronunciation": "vi-SIS-i-tood",
         "part_of_speech": "noun",
         "definition": "a change of circumstances or fortune, typically unwelcome",
-        "example": "The vicissitudes of life taught her to be resilient and adaptable."
+        "example": "The vicissitudes of life taught her to be resilient and adaptable.",
+        "synonyms": ["fluctuation", "upheaval"]
     },
     {
         "word": "pusillanimous",
         "pronunciation": "pyoo-suh-LAN-uh-muhs",
         "part_of_speech": "adjective",
         "definition": "showing a lack of courage or determination; timid",
-        "example": "His pusillanimous response to the bully disappointed his friends."
+        "example": "His pusillanimous response to the bully disappointed his friends.",
+        "synonyms": ["cowardly", "timorous"]
     },
     {
         "word": "pulchritudinous",
         "pronunciation": "puhl-kri-TOOD-n-uhs",
         "part_of_speech": "adjective",
         "definition": "physically beautiful; comely",
-        "example": "The pulchritudinous sunset painted the sky in shades of gold and crimson."
+        "example": "The pulchritudinous sunset painted the sky in shades of gold and crimson.",
+        "synonyms": ["gorgeous", "stunning"]
     }
 ]
 
