@@ -1,0 +1,135 @@
+{
+  "identity": {
+    "name": "Lexicon (E1 Edition)",
+    "vibe": "The Intellectual Archive",
+    "description": "A vocabulary builder that feels like a premium editorial magazine, not a classroom tool. High contrast, typographic focus, and sophisticated motion.",
+    "archetype": "Swiss & High-Contrast (Modified for Readability)"
+  },
+  "typography": {
+    "primary_font": "Inter",
+    "secondary_font": "Playfair Display",
+    "mono_font": "JetBrains Mono",
+    "fonts_import_url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400&display=swap",
+    "usage": {
+      "headings": "Playfair Display, serif (font-serif)",
+      "body": "Inter, sans-serif (font-sans)",
+      "phonetics": "JetBrains Mono, monospace (font-mono)",
+      "ui_elements": "Inter, sans-serif (font-sans)"
+    },
+    "scale": {
+      "hero": "text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]",
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-2xl md:text-3xl font-semibold tracking-tight",
+      "body": "text-base md:text-lg leading-relaxed text-muted-foreground",
+      "caption": "text-sm font-medium uppercase tracking-widest text-muted-foreground/80"
+    }
+  },
+  "colors": {
+    "theme": "system",
+    "palette": {
+      "light": {
+        "background": "#FAFAF9",
+        "foreground": "#18181B",
+        "card": "#FFFFFF",
+        "card_foreground": "#18181B",
+        "primary": "#18181B",
+        "primary_foreground": "#FAFAF9",
+        "secondary": "#F5F5F4",
+        "secondary_foreground": "#18181B",
+        "muted": "#F5F5F4",
+        "muted_foreground": "#78716C",
+        "accent": "#F97316",
+        "accent_foreground": "#FFFFFF",
+        "destructive": "#EF4444",
+        "border": "#E7E5E4",
+        "input": "#E7E5E4",
+        "ring": "#18181B"
+      },
+      "dark": {
+        "background": "#0C0A09",
+        "foreground": "#FAFAF9",
+        "card": "#1C1917",
+        "card_foreground": "#FAFAF9",
+        "primary": "#FAFAF9",
+        "primary_foreground": "#18181B",
+        "secondary": "#292524",
+        "secondary_foreground": "#FAFAF9",
+        "muted": "#292524",
+        "muted_foreground": "#A8A29E",
+        "accent": "#FB923C",
+        "accent_foreground": "#18181B",
+        "destructive": "#991B1B",
+        "border": "#292524",
+        "input": "#292524",
+        "ring": "#A8A29E"
+      }
+    }
+  },
+  "spacing_and_layout": {
+    "container_padding": "p-6 md:p-12 lg:p-20",
+    "section_gap": "gap-8 md:gap-16",
+    "card_padding": "p-6 md:p-8",
+    "radius": "rounded-sm",
+    "grid_strategy": "Bento Grid (Asymmetric)",
+    "max_width": "max-w-5xl mx-auto"
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "card": "shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-300",
+      "button": "shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all"
+    },
+    "borders": "border border-border",
+    "gradients": "None. Use solid colors and texture.",
+    "textures": "Grain overlay (opacity 0.03) on background recommended."
+  },
+  "components": {
+    "Button": {
+      "style": "Sharp corners, heavy brutalist shadow or clean minimal ghost.",
+      "default_class": "rounded-none font-medium tracking-wide uppercase text-xs"
+    },
+    "Card": {
+      "style": "Minimalist, high whitespace, crisp borders.",
+      "default_class": "rounded-sm border-border bg-card text-card-foreground"
+    },
+    "Input": {
+      "style": "Underlined or solid block. Avoid standard rounded inputs.",
+      "default_class": "rounded-none border-b-2 border-input bg-transparent focus:border-primary focus:ring-0 px-0"
+    }
+  },
+  "motion": {
+    "page_transition": {
+      "initial": { "opacity": 0, "y": 20 },
+      "animate": { "opacity": 1, "y": 0 },
+      "exit": { "opacity": 0, "y": -20 },
+      "transition": { "duration": 0.4, "ease": "easeOut" }
+    },
+    "hover_effects": "scale-[1.01] or slight lift. Text color change.",
+    "library": "framer-motion"
+  },
+  "image_urls": {
+    "abstract_geometric": {
+      "url": "https://images.unsplash.com/photo-1704122545404-56107e7e7adf?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "desc": "Black and white squares - use for abstract pattern or texture",
+      "category": "texture"
+    },
+    "empty_state": {
+      "url": "https://images.unsplash.com/photo-1745173039015-ed14079da462?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "desc": "Abstract geometric design - use for empty states or loading",
+      "category": "illustration"
+    },
+    "history_bg": {
+      "url": "https://images.unsplash.com/photo-1634274638037-c033506ada96?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "desc": "Clock on building - subtle background for history/archive",
+      "category": "background"
+    }
+  },
+  "universal_guidelines": [
+    "Do not use gradients for text.",
+    "Always use the defined font stack. Playfair for Emotion, Inter for Information.",
+    "Use plenty of negative space. Double the padding you think you need.",
+    "Interactive elements must have clear hover states.",
+    "Ensure dark mode is high contrast (Obsidian/White) not muddy gray.",
+    "Use data-testid attributes for all interactive elements."
+  ],
+  "instructions_to_main_agent": "Implement the design using the provided color palette and typography. Override default Tailwind config. Build components that respect the 'Swiss Editorial' aesthetic - sharp lines, bold serif headings, and asymmetric layouts. Use the 'visual_enhancers' for buttons (brutalist shadow) to give it a unique tactile feel."
+}
