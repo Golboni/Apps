@@ -173,6 +173,27 @@ const WordOfTheDay = ({ word, onMarkLearned, loading }) => {
           </div>
         )}
 
+        {/* Antonyms */}
+        {word.antonyms && word.antonyms.length > 0 && (
+          <div className="space-y-2" data-testid="antonyms-section">
+            <h3 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              Opposite Words <span className="normal-case">(Antonyms)</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {word.antonyms.map((antonym, index) => (
+                <Badge 
+                  key={index} 
+                  variant="outline" 
+                  className="rounded-sm text-sm font-normal px-3 py-1 border-destructive/50 text-destructive hover:bg-destructive/10 transition-colors"
+                  data-testid={`antonym-${index}`}
+                >
+                  {antonym}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Origin Popup Link */}
         {word.origin && (
           <Dialog>
