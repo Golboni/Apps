@@ -635,6 +635,21 @@ async def reset_progress():
     return {"success": True, "message": "Progress reset"}
 
 
+@api_router.post("/admin/reseed-words")
+async def reseed_words():
+    """Reseed the vocabulary words database with latest data"""
+    # Delete all existing words
+    await db.words.delete_many({})
+    
+    # Re-seed with updated words (including antonyms)
+    for word_data in VOCABULARY_WORDS:
+        word = Word(**word_data)
+        doc = word.model_dump()
+        await db.words.insert_one(doc)
+    
+    return {"success": True, "message": f"Reseeded {len(VOCABULARY_WORDS)} words with antonyms"}
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
